@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<!-- Anypoint Org / Business Group ID -->
 	<groupId>f0005679-fd45-4b88-898d-080ad2da66c9</groupId>
-	<artifactId>mulegit_app</artifactId>
+	<artifactId>mulegitapp</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>mule-application</packaging>
 	<name>mulegitapp</name>
