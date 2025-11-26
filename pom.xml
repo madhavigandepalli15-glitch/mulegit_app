@@ -5,22 +5,30 @@
 
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- Business Group ID -->
     <groupId>f0005679-fd45-4b88-898d-080ad2da66c9</groupId>
     <artifactId>mulegitapp</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>mule-application</packaging>
+
     <name>mulegitapp</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <!-- Runtime -->
         <app.runtime>4.10.1</app.runtime>
+
+        <!-- Maven plugin version -->
         <mule.maven.plugin.version>4.3.0</mule.maven.plugin.version>
+
+        <!-- CH2 Deployment Properties -->
         <deployment.env>Sandbox</deployment.env>
         <deployment.target>Cloudhub-US-East-2</deployment.target>
     </properties>
 
-    <!-- ✔ KEEP ONLY THIS ONE -->
+    <!-- ONLY V3 Exchange URL (correct) -->
     <distributionManagement>
         <repository>
             <id>Repository</id>
@@ -33,8 +41,8 @@
     <repositories>
         <repository>
             <id>anypoint-exchange-v3</id>
-            <name>Exchange2 Repository</name>
-            <url>https://maven.anypoint.mulesoft.com/api/v2/organizations/f0005679-fd45-4b88-898d-080ad2da66c9/maven</url>
+            <name>Exchange Repository</name>
+            <url>https://maven.anypoint.mulesoft.com/api/v3/organizations/f0005679-fd45-4b88-898d-080ad2da66c9/maven</url>
         </repository>
 
         <repository>
@@ -52,10 +60,8 @@
     <pluginRepositories>
         <pluginRepository>
             <id>mulesoft-plugin-repo</id>
-            <name>MuleSoft Plugin Repository</name>
             <url>https://repository.mulesoft.org/releases/</url>
         </pluginRepository>
-
         <pluginRepository>
             <id>central</id>
             <url>https://repo.maven.apache.org/maven2</url>
@@ -64,12 +70,14 @@
 
     <build>
         <plugins>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-clean-plugin</artifactId>
                 <version>3.2.0</version>
             </plugin>
 
+            <!-- CloudHub 2.0 Deployment Plugin -->
             <plugin>
                 <groupId>org.mule.tools.maven</groupId>
                 <artifactId>mule-maven-plugin</artifactId>
@@ -84,13 +92,17 @@
                         <provider>MC</provider>
                         <environment>${deployment.env}</environment>
                         <target>${deployment.target}</target>
+
+                        <!-- MUST MATCH <server>Repository</server> in settings.xml -->
                         <server>Repository</server>
 
+                        <!-- Provided from Jenkins -->
                         <username>${anypoint.username}</username>
                         <password>${anypoint.password}</password>
 
                         <muleVersion>${app.runtime}</muleVersion>
                         <applicationName>${project.artifactId}</applicationName>
+
                         <replicas>1</replicas>
                         <vCores>0.1</vCores>
 
@@ -98,12 +110,15 @@
                             <generateDefaultPublicUrl>true</generateDefaultPublicUrl>
                         </deploymentSettings>
                     </cloudhub2Deployment>
+
                 </configuration>
             </plugin>
+
         </plugins>
     </build>
 
     <dependencies>
+
         <dependency>
             <groupId>org.mule.connectors</groupId>
             <artifactId>mule-http-connector</artifactId>
@@ -117,6 +132,7 @@
             <version>1.2.4</version>
             <classifier>mule-plugin</classifier>
         </dependency>
+
     </dependencies>
 
 </project>
