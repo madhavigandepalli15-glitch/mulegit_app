@@ -25,7 +25,7 @@
         <repository>
             <id>Repository</id>
             <name>Exchange Repository</name>
-            <url>https://maven.anypoint.mulesoft.com/api/v2/organizations/f0005679-fd45-4b88-898d-080ad2da66c9/maven</url>
+            <url>https://maven.anypoint.mulesoft.com/api/v3/organizations/f0005679-fd45-4b88-898d-080ad2da66c9/maven</url>
             <layout>default</layout>
         </repository>
     </distributionManagement>
