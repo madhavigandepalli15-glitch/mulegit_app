@@ -5,38 +5,26 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <!-- Business Group ID -->
+    <!-- Business Group -->
     <groupId>f0005679-fd45-4b88-898d-080ad2da66c9</groupId>
     <artifactId>mulegitapp</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>mule-application</packaging>
 
-    <name>mulegitapp</name>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <!-- Runtime -->
+        <!-- Mule Runtime -->
         <app.runtime>4.10.1</app.runtime>
 
-        <!-- Maven plugin version -->
+        <!-- Mule Plugin -->
         <mule.maven.plugin.version>4.3.0</mule.maven.plugin.version>
 
-        <!-- CH2 Deployment Properties -->
+        <!-- CloudHub 2.0 Deployment -->
         <deployment.env>Sandbox</deployment.env>
         <deployment.target>Cloudhub-US-East-2</deployment.target>
     </properties>
-
-    <!-- ONLY V3 Exchange URL (correct) -->
-    <distributionManagement>
-        <repository>
-            <id>Repository</id>
-            <name>Exchange Repository</name>
-            <url>https://maven.anypoint.mulesoft.com/api/v3/organizations/f0005679-fd45-4b88-898d-080ad2da66c9/maven</url>
-            <layout>default</layout>
-        </repository>
-    </distributionManagement>
 
     <repositories>
         <repository>
@@ -47,7 +35,6 @@
 
         <repository>
             <id>mulesoft-releases</id>
-            <name>MuleSoft Releases</name>
             <url>https://repository.mulesoft.org/releases/</url>
         </repository>
 
@@ -62,11 +49,14 @@
             <id>mulesoft-plugin-repo</id>
             <url>https://repository.mulesoft.org/releases/</url>
         </pluginRepository>
+
         <pluginRepository>
             <id>central</id>
             <url>https://repo.maven.apache.org/maven2</url>
         </pluginRepository>
     </pluginRepositories>
+
+    <!-- IMPORTANT: NO distributionManagement (no Exchange upload) -->
 
     <build>
         <plugins>
@@ -77,7 +67,7 @@
                 <version>3.2.0</version>
             </plugin>
 
-            <!-- CloudHub 2.0 Deployment Plugin -->
+            <!-- CLOUDHUB 2.0 DEPLOYMENT -->
             <plugin>
                 <groupId>org.mule.tools.maven</groupId>
                 <artifactId>mule-maven-plugin</artifactId>
@@ -89,19 +79,16 @@
 
                     <cloudhub2Deployment>
                         <uri>https://anypoint.mulesoft.com</uri>
-                        <provider>MC</provider>
+                        <provider>CH2</provider>
+
                         <environment>${deployment.env}</environment>
                         <target>${deployment.target}</target>
 
-                        <!-- MUST MATCH <server>Repository</server> in settings.xml -->
-                        <server>Repository</server>
-
-                        <!-- Provided from Jenkins -->
                         <username>${anypoint.username}</username>
                         <password>${anypoint.password}</password>
 
-                        <muleVersion>${app.runtime}</muleVersion>
                         <applicationName>${project.artifactId}</applicationName>
+                        <muleVersion>${app.runtime}</muleVersion>
 
                         <replicas>1</replicas>
                         <vCores>0.1</vCores>
@@ -118,7 +105,6 @@
     </build>
 
     <dependencies>
-
         <dependency>
             <groupId>org.mule.connectors</groupId>
             <artifactId>mule-http-connector</artifactId>
@@ -132,7 +118,5 @@
             <version>1.2.4</version>
             <classifier>mule-plugin</classifier>
         </dependency>
-
     </dependencies>
-
 </project>
