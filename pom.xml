@@ -22,7 +22,8 @@
         <mule.maven.plugin.version>4.3.0</mule.maven.plugin.version>
 
         <!-- CloudHub 2.0 Deployment -->
-        <deployment.env>Sandbox</deployment.env>
+       <deployment.env>e076f0f5-157c-4c5f-baec-51a8f09d5bd2</deployment.env>
+
         <deployment.target>Cloudhub-US-East-2</deployment.target>
     </properties>
 
