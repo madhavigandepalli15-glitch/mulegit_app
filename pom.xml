@@ -19,6 +19,14 @@
 		<deployment.target>Cloudhub-US-East-2</deployment.target>
 	</properties>
 	<!-- Exchange Maven Facade repositories (for dependencies) -->
+	<distributionManagement>
+    <repository>
+        <id>Repository</id>
+        <name>Exchange Repository</name>
+        <url>https://maven.anypoint.mulesoft.com/api/v2/organizations/f0005679-fd45-4b88-898d-080ad2da66c9/maven</url>
+        <layout>default</layout>
+    </repository>
+</distributionManagement>
 	<repositories>
 		<repository>
 			<!-- 🔹 MUST match <server><id>anypoint-exchange-v3</id> in settings.xml -->
